@@ -18,7 +18,7 @@ public static class HierarchySectionHeader
 
         if (gameObject == null || !gameObject.name.StartsWith("//", System.StringComparison.Ordinal)) return;
         
-        EditorGUI.DrawRect(selectionRect, Color.black);
+        EditorGUI.DrawRect(selectionRect, Color.grey);
         EditorGUI.DropShadowLabel(selectionRect, gameObject.name.Replace("/", "").ToUpperInvariant());
     }
 }
