@@ -35,9 +35,9 @@ namespace Core
             var infoNo = _sapper.GetInfo(Tuple.Create<int, int>(0, 0));
             Debug.Log("infoNo: " + infoNo);
             
-            GetComponentInParent<HUD>().showRoomCoords(); //info from RoomsManager
+            //GetComponentInParent<HUD>().showRoomCoords(); //info from RoomsManager
             
-            _room.GetComponent<RoomView>().ChangeDangerNumber(infoNo);
+            _roomsManager.ActiveRoom.GetComponent<RoomView>().ChangeDangerNumber(infoNo);
             // TODO: add listeners to doors
             // TODO: add script to doors with player collision detection
             // TODO: get info about new room
