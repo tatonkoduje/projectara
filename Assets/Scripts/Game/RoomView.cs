@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,11 @@ namespace Game
         [SerializeField]
         private Sprite[] dangerNumberSprites;
 
+        public void Initialize()
+        {
+            
+        }
+        
         public void ChangeDangerNumber(int value)
         {
             dangerNumberSpriteRenderer.sprite = value != -1 ? dangerNumberSprites[value] : null;

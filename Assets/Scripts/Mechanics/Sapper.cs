@@ -37,16 +37,23 @@ namespace Mechanics
             return result > 0 ? result : _area[coords.Item1, coords.Item2];
         }
 
+        public Tuple<int, int> GetRandomCoordsWithoutBomb()
+        {
+            var coords = GetRandomCoords();
+            while (BombExists(coords.Item1, coords.Item2))
+            {
+                coords = GetRandomCoords();
+            }
+
+            return coords;
+        }
+        
         
         private void PopulateDanger()
         {
             for (var i = 0; i < DangerCount; i++)
             {
-                var coords = GetRandomCoords();
-                while (BombExists(coords.Item1, coords.Item2))
-                {
-                    coords = GetRandomCoords();
-                }
+                var coords = GetRandomCoordsWithoutBomb();
                 _area[coords.Item1, coords.Item2] = -1;
             }
         }
@@ -74,7 +81,7 @@ namespace Mechanics
 
             return new Tuple<int, int>(rnX, rnY);
         }
-        
+
         private bool In2DArrayBounds(int x, int y)
         {
             return x >= _area.GetLowerBound(0) &&

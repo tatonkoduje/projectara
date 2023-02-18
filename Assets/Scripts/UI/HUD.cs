@@ -1,13 +1,18 @@
+using Core;
+using TMPro;
 using UnityEngine;
 
 namespace UI
 {
     public class HUD : MonoBehaviour
     {
-        // Start is called before the first frame update
+        [SerializeField]
+        private TMP_Text coordsTF_DEBUG;
+        
+        
         void Start()
         {
-        
+            Debug.Log("Start HUD");
         }
 
         // Update is called once per frame
@@ -16,9 +21,10 @@ namespace UI
         
         }
 
-        public void showRoomCoords()
+        public void ShowRoomCoords()
         {
-            
+            var t = GameManager.Instance.gameEngine.GetRoomCoords();
+            coordsTF_DEBUG.SetText($"Room coordinates (x: {t.Item1}, y: {t.Item2})");
         }
     }
 }

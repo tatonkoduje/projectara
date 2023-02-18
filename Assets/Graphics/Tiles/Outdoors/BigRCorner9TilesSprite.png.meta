@@ -651,8 +651,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -32, y: 32}
-        - {x: -31, y: -1}
-        - {x: 32, y: -1}
+        - {x: -31, y: 0}
+        - {x: 32, y: 0}
         - {x: 32, y: 32}
       tessellationDetail: 0
       bones: []
@@ -2290,13 +2290,13 @@ TextureImporter:
       BigRCorner9TilesSprite_52: -1041074036
       BigRCorner9TilesSprite_8: -103061759
       BigRCorner9TilesSprite_11: 1719839163
-      BigRCorner9TilesSprite_50: 271077467
+      BigRCorner9TilesSprite_62: 1379364475
       BigRCorner9TilesSprite_80: -53094241
       BigRCorner9TilesSprite_2: 121391895
       BigRCorner9TilesSprite_58: -285195222
       BigRCorner9TilesSprite_13: 119105386
       BigRCorner9TilesSprite_33: 514203602
-      BigRCorner9TilesSprite_62: 1379364475
+      BigRCorner9TilesSprite_50: 271077467
       BigRCorner9TilesSprite_55: -2064582670
       BigRCorner9TilesSprite_61: -295692331
       BigRCorner9TilesSprite_93: -1244185124
