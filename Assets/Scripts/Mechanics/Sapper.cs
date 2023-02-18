@@ -1,21 +1,25 @@
 using System;
-using System.Drawing;
 using System.Security.Cryptography;
-using UnityEngine;
 
 namespace Mechanics
 {
     public class Sapper
     {
-        private int _dimension;
-        private int _dangerCount;
-        private int[,] _level;
+        private int Dimension { get; }
+        private int DangerCount { get; }
+        
+        private readonly int[,] _area;
         
         public Sapper(int dimension, int dangerCount)
         {
-            _dimension = dimension;
-            _dangerCount = dangerCount;
-            _level = new int[_dimension, _dimension];
+            if (dangerCount > dimension * dimension)
+            {
+                throw new Exception("DangerCount cant be bigger than 2D area size");
+            }
+            
+            Dimension = dimension;
+            DangerCount = dangerCount;
+            _area = new int[Dimension, Dimension];
 
             PopulateDefault();
             PopulateDanger();
@@ -24,63 +28,59 @@ namespace Mechanics
         public int GetInfo(Tuple<int, int> coords)
         {
             var result = 0;
-
-            var t = Tuple.Create(coords.Item1 + 1, coords.Item2);
             
             if(BombExists(coords.Item1 + 1, coords.Item2)) result++;
             if(BombExists(coords.Item1 - 1, coords.Item2)) result++;
             if(BombExists(coords.Item1, coords.Item2 + 1)) result++;
             if(BombExists(coords.Item1, coords.Item2 - 1)) result++;
 
-            if (result > 0)
-            {
-                return result;
-            }
-            else
-            {
-                return _level[coords.Item1, coords.Item2];
-            }
+            return result > 0 ? result : _area[coords.Item1, coords.Item2];
         }
 
+        
         private void PopulateDanger()
         {
-            var coords = GetRandomCoords();
-            
-            for (var i = 0; i < _dangerCount; i++)
+            for (var i = 0; i < DangerCount; i++)
             {
+                var coords = GetRandomCoords();
                 while (BombExists(coords.Item1, coords.Item2))
                 {
-                    _level[coords.Item1, coords.Item2] = -1;
+                    coords = GetRandomCoords();
                 }
+                _area[coords.Item1, coords.Item2] = -1;
             }
         }
-
         
         private bool BombExists(int x, int y)
         {
-            return _level[x, y] == -1;
+            return In2DArrayBounds(x, y) && _area[x, y] == -1;
         }
-
         
         private void PopulateDefault()
         {
-            for (var i = 0; i < _level.GetLength(0); i++)
+            for (var i = 0; i < _area.GetLength(0); i++)
             {
-                for (var j = 0; j < _level.GetLength(1); j++)
+                for (var j = 0; j < _area.GetLength(1); j++)
                 {
-                    _level[i, j] = 0;
+                    _area[i, j] = 0;
                 }
             }
         }
-
         
         private Tuple<int, int> GetRandomCoords()
         {
-            var rnX = RandomNumberGenerator.GetInt32(0,_level.GetLength(0));
-            var rnY = RandomNumberGenerator.GetInt32(0,_level.GetLength(1));
-            Debug.Log("Draw random coords: " + rnX + ", " + rnY);
+            var rnX = RandomNumberGenerator.GetInt32(0,_area.GetLength(0));
+            var rnY = RandomNumberGenerator.GetInt32(0,_area.GetLength(1));
 
             return new Tuple<int, int>(rnX, rnY);
+        }
+        
+        private bool In2DArrayBounds(int x, int y)
+        {
+            return x >= _area.GetLowerBound(0) &&
+                   x <= _area.GetUpperBound(0) &&
+                   y >= _area.GetLowerBound(1) &&
+                   y <= _area.GetUpperBound(1);
         }
     }
 }

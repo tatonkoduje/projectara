@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 
 namespace Core
 {
     public class Player : MonoBehaviour
     {
-        public float speed = 192;
+        public float speed;
+        
         private Vector2 _movement = new Vector2();
         private Rigidbody2D _rb2d;
 
     
         private void Start()
         {
+            //this.name = ""
             _rb2d = GetComponent<Rigidbody2D>();
         }
 

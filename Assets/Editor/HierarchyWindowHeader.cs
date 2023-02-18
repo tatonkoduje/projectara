@@ -15,7 +15,7 @@ public static class HierarchySectionHeader
     static void HierarchyWindowItemOnGUI(int instanceID, Rect selectionRect)
     {
         var gameObject = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
-
+        
         if (gameObject == null || !gameObject.name.StartsWith("//", System.StringComparison.Ordinal)) return;
         
         EditorGUI.DrawRect(selectionRect, Color.grey);

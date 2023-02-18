@@ -15,5 +15,10 @@ namespace UI
         {
         
         }
+
+        public void showRoomCoords()
+        {
+            
+        }
     }
 }
