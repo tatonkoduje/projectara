@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography;
+using Utils;
 
 namespace Mechanics
 {
@@ -25,22 +26,22 @@ namespace Mechanics
             PopulateDanger();
         }
 
-        public int GetInfo(Tuple<int, int> coords)
+        public int GetInfo(Coords coords)
         {
             var result = 0;
-            
-            if(BombExists(coords.Item1 + 1, coords.Item2)) result++;
-            if(BombExists(coords.Item1 - 1, coords.Item2)) result++;
-            if(BombExists(coords.Item1, coords.Item2 + 1)) result++;
-            if(BombExists(coords.Item1, coords.Item2 - 1)) result++;
+            // TODO: info ze obok nie ma pokoju ?
+            if(BombExists(coords.GetXNext())) result++;
+            if(BombExists(coords.GetYPrevious())) result++;
+            if(BombExists(coords.GetYNext())) result++;
+            if(BombExists(coords.GetYPrevious())) result++;
 
-            return result > 0 ? result : _area[coords.Item1, coords.Item2];
+            return result > 0 ? result : _area[coords.X, coords.Y];
         }
 
-        public Tuple<int, int> GetRandomCoordsWithoutBomb()
+        public Coords GetRandomCoordsWithoutBomb()
         {
             var coords = GetRandomCoords();
-            while (BombExists(coords.Item1, coords.Item2))
+            while (BombExists(coords))
             {
                 coords = GetRandomCoords();
             }
@@ -54,13 +55,13 @@ namespace Mechanics
             for (var i = 0; i < DangerCount; i++)
             {
                 var coords = GetRandomCoordsWithoutBomb();
-                _area[coords.Item1, coords.Item2] = -1;
+                _area[coords.X, coords.Y] = -1;
             }
         }
         
-        private bool BombExists(int x, int y)
+        private bool BombExists(Coords coords)
         {
-            return In2DArrayBounds(x, y) && _area[x, y] == -1;
+            return In2DArrayBounds(coords) && _area[coords.X, coords.Y] == -1;
         }
         
         private void PopulateDefault()
@@ -74,20 +75,20 @@ namespace Mechanics
             }
         }
         
-        private Tuple<int, int> GetRandomCoords()
+        private Coords GetRandomCoords()
         {
             var rnX = RandomNumberGenerator.GetInt32(0,_area.GetLength(0));
             var rnY = RandomNumberGenerator.GetInt32(0,_area.GetLength(1));
 
-            return new Tuple<int, int>(rnX, rnY);
+            return new Coords(rnX, rnY);
         }
 
-        private bool In2DArrayBounds(int x, int y)
+        public bool In2DArrayBounds(Coords coords)
         {
-            return x >= _area.GetLowerBound(0) &&
-                   x <= _area.GetUpperBound(0) &&
-                   y >= _area.GetLowerBound(1) &&
-                   y <= _area.GetUpperBound(1);
+            return coords.X >= _area.GetLowerBound(0) &&
+                   coords.X <= _area.GetUpperBound(0) &&
+                   coords.Y >= _area.GetLowerBound(1) &&
+                   coords.Y <= _area.GetUpperBound(1);
         }
     }
 }

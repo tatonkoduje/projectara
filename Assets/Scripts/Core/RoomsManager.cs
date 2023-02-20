@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Mechanics;
 using UnityEngine;
+using Utils;
 
 namespace Core
 {
@@ -9,8 +11,8 @@ namespace Core
         public GameObject ActiveRoom { get; set; }
 
         private Sapper _sapper;
-        private Tuple<int, int> _startRoomCoords;
-        private Tuple<int, int> _activeRoomCoords;
+        private Coords _startRoomCoords;
+        private Coords _activeRoomCoords;
         
         public RoomsManager()
         {
@@ -22,10 +24,11 @@ namespace Core
             Debug.Log("Initialize World");
             
             _sapper = new Sapper(dimension, dangerCount);
+            
             // TODO: create all rooms with some dependency of Sapper
         }
 
-        public Tuple<int, int> DrawStartRoom()
+        public Coords DrawStartRoom()
         {
             _startRoomCoords = _sapper.GetRandomCoordsWithoutBomb();
             _activeRoomCoords = _startRoomCoords;
@@ -33,6 +36,11 @@ namespace Core
             
             
             return _startRoomCoords;
+        }
+
+        public void MoveToRoom(Coords coords)
+        {
+            _activeRoomCoords = coords;
         }
 
         public int GetRoomDangerNumber()
@@ -43,9 +51,29 @@ namespace Core
             return infoNo;
         }
         
-        public Tuple<int, int> GetRoomCoords()
+        public Coords GetRoomCoords()
         {
             return _activeRoomCoords;
+        }
+
+        public Dictionary<string, Coords> GetNeighborhoodCoords()
+        {
+            var dictionary = new Dictionary<string, Coords>
+            {
+                { "Top", CheckCoords(_activeRoomCoords.GetYPrevious()) },
+                { "Bottom", CheckCoords(_activeRoomCoords.GetYNext()) },
+                { "Left", CheckCoords(_activeRoomCoords.GetXPrevious()) },
+                { "Right", CheckCoords(_activeRoomCoords.GetXNext()) }
+            };
+
+            return dictionary;
+        }
+        
+        private Coords CheckCoords(Coords checkedCoords)
+        {
+            return _sapper.In2DArrayBounds(checkedCoords)
+                ? checkedCoords
+                : Coords.Empty();
         }
     }
 }

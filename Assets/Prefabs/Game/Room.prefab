@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 955565672874210157}
   - component: {fileID: 955565672874210154}
   - component: {fileID: 955565672874210155}
-  m_Layer: 0
-  m_Name: door_left
-  m_TagString: Untagged
+  - component: {fileID: 7141130017077427960}
+  m_Layer: 7
+  m_Name: Left
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +94,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955565672874210156}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -117,9 +117,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.36407351, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,8 +128,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.375, y: 1.5625}
+  serializedVersion: 2
+  m_Size: {x: 1.103147, y: 1.5625}
   m_EdgeRadius: 0
+--- !u!114 &7141130017077427960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955565672874210156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b9e78be0564184bbd9d0deab1fac6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorSpriteR: {fileID: 0}
 --- !u!1 &955565672920246774
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a451b9c4a38b84cabab90629bd44fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dangerNumberSpriteRenderer: {fileID: 6022096167590706546}
   dangerNumberSprites:
   - {fileID: 1498127718, guid: 81cf45e46c9c806468d18b7c1581abf1, type: 3}
   - {fileID: -211311716, guid: 81cf45e46c9c806468d18b7c1581abf1, type: 3}
@@ -186,6 +198,7 @@ MonoBehaviour:
   - {fileID: 1080947703, guid: 81cf45e46c9c806468d18b7c1581abf1, type: 3}
   - {fileID: -1080907149, guid: 81cf45e46c9c806468d18b7c1581abf1, type: 3}
   - {fileID: -151327742, guid: 81cf45e46c9c806468d18b7c1581abf1, type: 3}
+  dangerNumberSpriteR: {fileID: 6022096167590706546}
 --- !u!1 &955565673546943362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,9 +2765,9 @@ GameObject:
   - component: {fileID: 955565673770051619}
   - component: {fileID: 955565673770051621}
   - component: {fileID: 955565673770051618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap_Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3844,7 +3857,6 @@ TilemapCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955565673770051625}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3868,8 +3880,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
@@ -3882,7 +3893,6 @@ CompositeCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955565673770051625}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -3906,8 +3916,7 @@ CompositeCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
   m_GenerationType: 0
@@ -3930,9 +3939,10 @@ GameObject:
   - component: {fileID: 955565673841238552}
   - component: {fileID: 955565673841238553}
   - component: {fileID: 955565673841238550}
-  m_Layer: 0
-  m_Name: door_top
-  m_TagString: Untagged
+  - component: {fileID: 6950239405143576199}
+  m_Layer: 7
+  m_Name: Top
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3945,7 +3955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955565673841238555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 6.12, z: 0}
+  m_LocalPosition: {x: 4.5, y: 6.123, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4012,7 +4022,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955565673841238555}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4036,9 +4045,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.3721137}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4048,8 +4056,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.859375, y: 2.421875}
+  serializedVersion: 2
+  m_Size: {x: 1.859375, y: 3.1661024}
   m_EdgeRadius: 0
+--- !u!114 &6950239405143576199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955565673841238555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b9e78be0564184bbd9d0deab1fac6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorSpriteR: {fileID: 0}
 --- !u!1 &955565674084500737
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,9 +4083,10 @@ GameObject:
   - component: {fileID: 955565674084500766}
   - component: {fileID: 955565674084500767}
   - component: {fileID: 955565674084500764}
-  m_Layer: 0
-  m_Name: door_bottom
-  m_TagString: Untagged
+  - component: {fileID: 4286866955896052905}
+  m_Layer: 7
+  m_Name: Bottom
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4143,7 +4166,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955565674084500737}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4167,9 +4189,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.25041533}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4179,8 +4200,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5625, y: 0.375}
+  serializedVersion: 2
+  m_Size: {x: 1.5625, y: 0.87583065}
   m_EdgeRadius: 0
+--- !u!114 &4286866955896052905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955565674084500737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b9e78be0564184bbd9d0deab1fac6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorSpriteR: {fileID: 0}
 --- !u!1 &955565674108309038
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,9 +4262,10 @@ GameObject:
   - component: {fileID: 955565674281704774}
   - component: {fileID: 955565674281704775}
   - component: {fileID: 955565674281704772}
-  m_Layer: 0
-  m_Name: door_right
-  m_TagString: Untagged
+  - component: {fileID: 475570057089686444}
+  m_Layer: 7
+  m_Name: Right
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4309,7 +4345,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955565674281704777}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4333,9 +4368,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.35540485, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4345,8 +4379,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.375, y: 1.5625}
+  serializedVersion: 2
+  m_Size: {x: 1.0858097, y: 1.5625}
   m_EdgeRadius: 0
+--- !u!114 &475570057089686444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955565674281704777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b9e78be0564184bbd9d0deab1fac6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorSpriteR: {fileID: 0}
 --- !u!1 &2733569273882552964
 GameObject:
   m_ObjectHideFlags: 0

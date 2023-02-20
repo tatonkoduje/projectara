@@ -6,8 +6,10 @@ namespace Core
 {
     public class GameManager : MonoBehaviour
     {
+        [Header ("References")]
         public HUD hud;
         public GameEngine gameEngine;
+        public Player player;
         
         private static GameManager _instance;
     
@@ -23,7 +25,12 @@ namespace Core
                 return _instance;
             }
         }
-        
+
+        private void Awake()
+        {
+            Debug.Log("Awake GameManager");
+        }
+
         private void Start()
         {
             Debug.Log("Start GameManager");
