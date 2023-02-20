@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Utils;
+using com.maapiid.projectara.Utils;
 
-namespace Game
+namespace com.maapiid.projectara.Game
 {
     public class RoomView : MonoBehaviour
     {
@@ -26,7 +26,6 @@ namespace Game
         
         public void PropagateCoords(Coords roomCoords, Dictionary<string, Coords> doorsCoords)
         {
-            Debug.Log("PropagateCoords room view");
             Coords = roomCoords;
             foreach(var door in _doors)
             {
@@ -41,8 +40,6 @@ namespace Game
         public void ChangeDangerNumber(int value)
         {
             dangerNumberSpriteR.sprite = value != -1 ? dangerNumberSprites[value] : null;
-            
-            // TODO: instancje drzwi jesli sa. Na kranch mapy ich nie ma? 
         }
     }
 }

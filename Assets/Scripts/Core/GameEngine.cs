@@ -1,11 +1,8 @@
-using System;
-using Game;
-using Mechanics;
-using UI;
+using com.maapiid.projectara.Game;
 using UnityEngine;
-using Utils;
+using com.maapiid.projectara.Utils;
 
-namespace Core
+namespace com.maapiid.projectara.Core
 {
     public class GameEngine : MonoBehaviour
     {
@@ -15,11 +12,9 @@ namespace Core
         
         [Header ("Assets")]
         public GameObject roomPrefab;
-
-       
+        
         private RoomsManager _roomsManager;
         
-    
         private void Awake()
         {
             Debug.Log("Awake GameEngine");
@@ -33,29 +28,36 @@ namespace Core
         private void Start()
         {
             Debug.Log("Start GameEngine");
-
             LoadRoom(_roomsManager.DrawStartRoom());
-            // start player position in game - random coordinates
-           
+        }
+        
+        public void LoadRoom(Coords coords)
+        {
+            MovePlayer(coords);
+                
+            if (_roomsManager.ActiveRoom != null)
+            {
+                Destroy(_roomsManager.ActiveRoom);
+            }
             
+            _roomsManager.MoveToRoom(coords);
             
-          
-            
-            // TODO: add listeners to doors - DONE
-            // TODO: add script to doors with player collision detection - DONE
-            // TODO: get info about new room
-            // TODO: remove old and Instantiate new
-            // TODO: think how to move that logic to room manager
-            
-            // TODO: extends room manager
-            // TODO: in HUD read info from room manager by game engine access?  think about who manage everything
+            _roomsManager.ActiveRoom = Instantiate(roomPrefab, new Vector2(0, 0), Quaternion.identity);
+            var room =  _roomsManager.ActiveRoom.GetComponent<RoomView>();
+            room.PropagateCoords(coords, _roomsManager.GetNeighborhoodCoords());
+            room.ChangeDangerNumber( _roomsManager.GetRoomDangerNumber());
+        }
+        
+        public Coords GetRoomCoords()
+        {
+            return _roomsManager.GetRoomCoords();
         }
 
-
+        
         /*
-         * Direction logic is temporary - create better logic.... 
-         */
-        public void LoadRoom(Coords coords)
+        * Direction logic is temporary - create better logic.... 
+        */
+        private void MovePlayer(Coords coords)
         {
             if (coords.X > _roomsManager.GetRoomCoords().X)
             {
@@ -73,33 +75,6 @@ namespace Core
             {
                 GameManager.Instance.player.transform.position = new Vector3(4.5f, 5.4f, 0);
             }
-            
-            
-     
-            Debug.Log($"Request to GameEngine - ktos chce przejsc do pokoju Coords -> x:{coords.X},y:{coords.Y}");
-
-            if (_roomsManager.ActiveRoom != null)
-            {
-                Destroy(_roomsManager.ActiveRoom);
-            }
-            
-            
-            _roomsManager.MoveToRoom(coords);
-            _roomsManager.ActiveRoom = Instantiate(roomPrefab, new Vector2(0, 0), Quaternion.identity);
-            
-            
-            var room =  _roomsManager.ActiveRoom.GetComponent<RoomView>();
-            room.PropagateCoords(coords, _roomsManager.GetNeighborhoodCoords());
-           _roomsManager.ActiveRoom.GetComponent<RoomView>().ChangeDangerNumber( _roomsManager.GetRoomDangerNumber());
-
-
-           
-        }
-        
-        
-        public Coords GetRoomCoords()
-        {
-            return _roomsManager.GetRoomCoords();
         }
     }
 }

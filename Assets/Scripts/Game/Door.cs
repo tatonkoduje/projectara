@@ -1,111 +1,96 @@
-using System;
-using Core;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEditor;
+using com.maapiid.projectara.Core;
 using UnityEngine;
-using Utils;
+using com.maapiid.projectara.Utils;
 
-namespace Game
+namespace com.maapiid.projectara.Game
 {
     public class Door : MonoBehaviour
     {
-        private bool AreOpen { get; set; }
         public Coords AccessToCoords { get; set; }
         
-        public SpriteRenderer doorSpriteR;
-
-        private Color DEBUG_DoorSpriteColor;
+        private bool _areOpen;
         private bool _sleeping;
         private bool _actionsActive;
+        
+        [Header("Assets")]
+        public SpriteRenderer doorSpriteR;
+        
+        
+        private Color DEBUG_DoorSpriteColor;
 
         private void Start()
         {
             doorSpriteR = gameObject.GetComponent<SpriteRenderer>();
             DEBUG_DoorSpriteColor = doorSpriteR.color;
-            AreOpen = false;
+            
+            _areOpen = false;
             _actionsActive = false;
         }
-        
 
-        public void MakeAction(int actionId)
+
+        private void MakeAction(int actionId)
         {
             _actionsActive = false;
             
             if (actionId == 1)
             {
-                if (!AreOpen)
+                if (!_areOpen)
                 {
-                    Debug.Log("Ktoś probuje otworzyć drzwi");
-                    AreOpen = true;
-                    Debug.Log("Drzwi otwarte: " + AreOpen);
+                    _areOpen = true;
                     doorSpriteR.color = new Color(0, 1, 0, 0.5f);
                 }
                 else
                 {
-                    Debug.Log("Ktoś probuje zamknac drzwi");
-                    AreOpen = false;
-                    Debug.Log("Drzwi otwarte: " + AreOpen);
+                    _areOpen = false;
                     doorSpriteR.color = DEBUG_DoorSpriteColor;
                 }
             }
 
             if (actionId == 2)
             {
-                if (!AreOpen)
+                if (!_areOpen)
                 {
                     Debug.Log("Drzwi zamknięte!!!!");
                 }
                 else
                 {
-                    Debug.Log("Wchodze!!!!");
-                    //gameObject.SendMessage("ChangeRoom", accessToCoords);
                     GameManager.Instance.gameEngine.LoadRoom(AccessToCoords);
                 }
             }
         }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("Collision with Player detected - show 'E' letter");
-            }
-        }
+        
         
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Collision with Player ended - hide 'E' letter");
                 _sleeping = false;
                 _actionsActive = false;
             }
         }
         
-        private void OnTriggerStay2D(Collider2D col)
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            Debug.Log($"OnTriggerStay2D in Door (are open: {AreOpen}) with: {col.gameObject.tag} -> Press E to see actions" );
-            Debug.Log("sleeping: "+ _sleeping + "  _actionsActive: " + _actionsActive);
+            if (!collision.gameObject.CompareTag("Player")) return;
+            
             if (Input.GetAxis("Submit") > 0 && !_sleeping)
             {
-                Debug.Log("I pressed E > open action (1.open/close, 2.unlock/lock, 3. cross the door ?");
-                
+                Debug.Log("I pressed E > open action (1.open/close, 2. cross the door ?");
+
                 _sleeping = true;
                 _actionsActive = true;
             }
 
+            // TODO: Action mechanism
             if (_actionsActive && _sleeping)
             {
                 if (Input.GetKey(KeyCode.Alpha1))
                 {
-                    Debug.Log("Action 1");
                     MakeAction(1);
                 }
 
                 if (Input.GetKey(KeyCode.Alpha2))
                 {
-                    
-                    Debug.Log("Action 2");
                     MakeAction(2);
                 }
             }

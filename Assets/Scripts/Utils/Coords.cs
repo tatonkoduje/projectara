@@ -1,12 +1,13 @@
 using System.Data.SqlTypes;
-using Unity.VisualScripting;
 
-namespace Utils
+namespace com.maapiid.projectara.Utils
 {
-    public struct Coords : INullable
+    public class Coords : INullable
     {
         public readonly int X;
         public readonly int Y;
+
+        private Coords() { }
         
         public Coords(int x, int y)
         {

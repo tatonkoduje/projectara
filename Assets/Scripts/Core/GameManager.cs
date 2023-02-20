@@ -1,8 +1,7 @@
-using System;
-using UI;
+using com.maapiid.projectara.UI;
 using UnityEngine;
 
-namespace Core
+namespace com.maapiid.projectara.Core
 {
     public class GameManager : MonoBehaviour
     {
@@ -12,8 +11,7 @@ namespace Core
         public Player player;
         
         private static GameManager _instance;
-    
-       
+        
         public static GameManager Instance
         {
             get

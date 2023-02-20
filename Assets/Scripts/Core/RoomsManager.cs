@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Mechanics;
+using com.maapiid.projectara.Mechanics;
 using UnityEngine;
-using Utils;
+using com.maapiid.projectara.Utils;
 
-namespace Core
+namespace com.maapiid.projectara.Core
 {
     public class RoomsManager
     {
@@ -13,18 +12,12 @@ namespace Core
         private Sapper _sapper;
         private Coords _startRoomCoords;
         private Coords _activeRoomCoords;
-        
-        public RoomsManager()
-        {
-            
-        }
 
         public void InitializeWorld(int dimension, int dangerCount)
         {
             Debug.Log("Initialize World");
             
             _sapper = new Sapper(dimension, dangerCount);
-            
             // TODO: create all rooms with some dependency of Sapper
         }
 
@@ -32,8 +25,6 @@ namespace Core
         {
             _startRoomCoords = _sapper.GetRandomCoordsWithoutBomb();
             _activeRoomCoords = _startRoomCoords;
-            
-            
             
             return _startRoomCoords;
         }
@@ -45,10 +36,7 @@ namespace Core
 
         public int GetRoomDangerNumber()
         {
-            var infoNo = _sapper.GetInfo(GetRoomCoords());
-            Debug.Log("infoNo: " + infoNo);
-
-            return infoNo;
+            return _sapper.GetInfo(GetRoomCoords());
         }
         
         public Coords GetRoomCoords()

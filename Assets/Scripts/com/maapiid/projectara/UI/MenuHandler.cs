@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UI
+namespace com.maapiid.projectara.UI
 {
     public class MenuHandler : MonoBehaviour
     {

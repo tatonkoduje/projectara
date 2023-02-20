@@ -1,8 +1,8 @@
 using System;
 using System.Security.Cryptography;
-using Utils;
+using com.maapiid.projectara.Utils;
 
-namespace Mechanics
+namespace com.maapiid.projectara.Mechanics
 {
     public class Sapper
     {
@@ -28,14 +28,17 @@ namespace Mechanics
 
         public int GetInfo(Coords coords)
         {
-            var result = 0;
-            // TODO: info ze obok nie ma pokoju ?
-            if(BombExists(coords.GetXNext())) result++;
-            if(BombExists(coords.GetYPrevious())) result++;
-            if(BombExists(coords.GetYNext())) result++;
-            if(BombExists(coords.GetYPrevious())) result++;
+            if (_area[coords.X, coords.Y] == -1)
+            {
+                return _area[coords.X, coords.Y];
+            }
 
-            return result > 0 ? result : _area[coords.X, coords.Y];
+            var bombsFound = 0;
+            if(BombExists(coords.GetXNext())) bombsFound++;
+            if(BombExists(coords.GetXPrevious())) bombsFound++;
+            if(BombExists(coords.GetYNext())) bombsFound++;
+            if(BombExists(coords.GetYPrevious())) bombsFound++;
+            return bombsFound;
         }
 
         public Coords GetRandomCoordsWithoutBomb()
@@ -47,6 +50,14 @@ namespace Mechanics
             }
 
             return coords;
+        }
+        
+        public bool In2DArrayBounds(Coords coords)
+        {
+            return coords.X >= _area.GetLowerBound(0) &&
+                   coords.X <= _area.GetUpperBound(0) &&
+                   coords.Y >= _area.GetLowerBound(1) &&
+                   coords.Y <= _area.GetUpperBound(1);
         }
         
         
@@ -81,14 +92,6 @@ namespace Mechanics
             var rnY = RandomNumberGenerator.GetInt32(0,_area.GetLength(1));
 
             return new Coords(rnX, rnY);
-        }
-
-        public bool In2DArrayBounds(Coords coords)
-        {
-            return coords.X >= _area.GetLowerBound(0) &&
-                   coords.X <= _area.GetUpperBound(0) &&
-                   coords.Y >= _area.GetLowerBound(1) &&
-                   coords.Y <= _area.GetUpperBound(1);
         }
     }
 }
