@@ -4,7 +4,7 @@ using UnityEngine.Video;
 
 /*Tells a cut-scene to begin playing, and then load a scene when completed.*/
 
-namespace com.maapiid.projectara.UI
+namespace UI
 {
     public class VideoController : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 /*Simple script telling Unity to Destroy this if it finds an identical one in the scene!*/
 
-namespace com.maapiid.projectara.Core
+namespace Core
 {
     public class StartUp : MonoBehaviour
     {
