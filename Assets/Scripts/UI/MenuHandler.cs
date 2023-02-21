@@ -1,7 +1,8 @@
+using com.maapiid.projectara.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace com.maapiid.projectara.UI
+namespace UI
 {
     public class MenuHandler : MonoBehaviour
     {
@@ -19,7 +20,12 @@ namespace com.maapiid.projectara.UI
     
         public void LoadGame()
         {
-            //load game
+            SceneManager.LoadScene(whichScene);
+        }
+        
+        public void SaveGame()
+        {
+            GameManager.Instance.SaveGame();
         }
     
         public void OpenOptions()
