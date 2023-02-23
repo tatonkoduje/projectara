@@ -1,6 +1,8 @@
+using System;
 using com.maapiid.projectara.Game;
 using UnityEngine;
 using com.maapiid.projectara.Utils;
+using com.maapiid.savesystem;
 
 namespace com.maapiid.projectara.Core
 {
@@ -19,10 +21,15 @@ namespace com.maapiid.projectara.Core
         {
             Debug.Log("Awake GameEngine");
             
+            Debug.Log("Load or not ?" + MessageHolder.STRING_MESSAGE);
+            if (MessageHolder.STRING_MESSAGE == "load")
+            {
+                GameManager.Instance.LoadGame();
+            }
+           
             // create rooms world
             _roomsManager = new RoomsManager();
             _roomsManager.InitializeWorld(room2DSize, dangerRoomsCount);
-           
         }
 
         private void Start()
