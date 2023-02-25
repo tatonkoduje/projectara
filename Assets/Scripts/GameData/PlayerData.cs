@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GameData
 {
     [Serializable]
-    public class PlayerData : ISavableData
+    public class PlayerData
     {
         public float Speed;
         public int xp;

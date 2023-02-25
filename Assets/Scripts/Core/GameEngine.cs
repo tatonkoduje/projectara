@@ -16,17 +16,11 @@ namespace com.maapiid.projectara.Core
         public GameObject roomPrefab;
         
         private RoomsManager _roomsManager;
-        
+
         private void Awake()
         {
             Debug.Log("Awake GameEngine");
             
-            Debug.Log("Load or not ?" + MessageHolder.STRING_MESSAGE);
-            if (MessageHolder.STRING_MESSAGE == "load")
-            {
-                GameManager.Instance.LoadGame();
-            }
-           
             // create rooms world
             _roomsManager = new RoomsManager();
             _roomsManager.InitializeWorld(room2DSize, dangerRoomsCount);

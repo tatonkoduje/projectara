@@ -1,11 +1,11 @@
-﻿using com.maapiid.projectara.Utils;
-using com.maapiid.savesystem;
-using UnityEngine;
+﻿using System;
+using com.maapiid.projectara.Utils;
+
 
 namespace GameData
 {
-    [System.Serializable]
-    public class CoordsData : ISavableData
+    [Serializable]
+    public class CoordsData
     {
         public int X;
         public int Y;
@@ -14,11 +14,6 @@ namespace GameData
         {
             X = coords.X;
             Y = coords.Y;
-        }
-        
-        public void Restore(MonoBehaviour mb_object)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,9 +1,8 @@
 using com.maapiid.projectara.Core;
-using com.maapiid.savesystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UI
+namespace com.maapiid.projectara.UI
 {
     public class MenuHandler : MonoBehaviour
     {
@@ -21,7 +20,6 @@ namespace UI
     
         public void LoadGame()
         {
-            MessageHolder.STRING_MESSAGE = "load";
             SceneManager.LoadScene(whichScene);
         }
         

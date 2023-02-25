@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -7,27 +8,36 @@ public class GameBuilder : MonoBehaviour
     [MenuItem("Build/Build Windows App")]
     public static void PerformWindowsBuild()
     {
-        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions.scenes = new[] { 
-            "Assets/Scenes/Menu.unity",
-            "Assets/Scenes/Intro.unity",
-            "Assets/Scenes/Game.unity" 
+        PlayerSettings.companyName = "maapiid";
+        var buildPlayerOptions = new BuildPlayerOptions
+        {
+            scenes = new[] { 
+                "Assets/Scenes/Menu.unity",
+                "Assets/Scenes/Intro.unity",
+                "Assets/Scenes/Game.unity" 
+            },
+            locationPathName = "build/windows/projectara.exe",
+            target = BuildTarget.StandaloneWindows,
+            options = BuildOptions.None
         };
-        buildPlayerOptions.locationPathName = "build/windows/projectara.exe";
-        buildPlayerOptions.target = BuildTarget.StandaloneWindows;
-        buildPlayerOptions.options = BuildOptions.None;
 
-        BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
-        BuildSummary summary = report.summary;
+        var report = BuildPipeline.BuildPlayer(buildPlayerOptions);
+        var summary = report.summary;
 
-        if (summary.result == BuildResult.Succeeded)
+        switch (summary.result)
         {
-            Debug.Log("Windows exe build succeeded: " + summary.totalSize + " bytes");
-        }
-        
-        if (summary.result == BuildResult.Failed)
-        {
-            Debug.Log("Build failed!");
+            case BuildResult.Succeeded:
+                Debug.Log("Windows exe build succeeded: " + summary.totalSize + " bytes");
+                break;
+            case BuildResult.Failed:
+                Debug.Log("Build failed!");
+                break;
+            case BuildResult.Unknown:
+                break;
+            case BuildResult.Cancelled:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 }

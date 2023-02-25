@@ -23,6 +23,8 @@ namespace com.maapiid.projectara.Core
         {
             Debug.Log("Start Player");
             _rb2d = GetComponent<Rigidbody2D>();
+            
+           
         }
         
         private void FixedUpdate()
@@ -31,7 +33,6 @@ namespace com.maapiid.projectara.Core
             _movement.y = Input.GetAxisRaw("Vertical");
 
             _movement.Normalize();
-            
             _rb2d.velocity = _movement * (speed * Time.deltaTime);
         }
         
@@ -52,7 +53,14 @@ namespace com.maapiid.projectara.Core
         
         public object CaptureState()
         {
-            return new PlayerData(this);
+            
+
+            
+            
+            // example 1 --------------------------------------------------------
+            return new PlayerData(this); 
+            
+            // example 2 --------------------------------------------------------
             /*var saveData = new SaveData
             {
                 speed = speed,
@@ -66,11 +74,19 @@ namespace com.maapiid.projectara.Core
             saveData.position[2] = position.z;
 
             return saveData;*/
+            
+            
+            
+            
         }
 
         public void RestoreState(object state)
         {
+            
+            // example 1 --------------------------------------------------------
             ((PlayerData)state).Restore(this);
+            
+            // example 2 --------------------------------------------------------
             /*var saveData = (SaveData) state;
             speed = saveData.speed;
             xp = saveData.xp;
@@ -86,5 +102,7 @@ namespace com.maapiid.projectara.Core
             public int xp;
             public float[] position;
         }*/
+        
+        // example 3 --------------------------------------------------------
     }
 }
