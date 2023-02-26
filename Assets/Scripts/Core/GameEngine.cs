@@ -8,7 +8,7 @@ namespace com.maapiid.projectara.Core
 {
     public class GameEngine : MonoBehaviour
     {
-        [Header ("Inventory")]
+        [Header ("World Settings")]
         public int room2DSize;
         public int dangerRoomsCount;
         

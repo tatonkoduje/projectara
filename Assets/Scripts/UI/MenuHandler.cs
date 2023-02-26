@@ -1,4 +1,5 @@
 using com.maapiid.projectara.Core;
+using com.maapiid.projectara.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,7 @@ namespace com.maapiid.projectara.UI
     
         public void LoadGame()
         {
+            Messanger.Msg = "continue";
             SceneManager.LoadScene(whichScene);
         }
         

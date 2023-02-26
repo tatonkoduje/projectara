@@ -1,36 +1,35 @@
 ﻿using System;
 using com.maapiid.projectara.Core;
-using com.maapiid.savesystem;
 using UnityEngine;
 
-
-namespace GameData
+namespace com.maapiid.projectara.GameData
 {
     [Serializable]
-    public class PlayerData
+    public struct PlayerData
     {
-        public float Speed;
+        public float speed;
         public int xp;
-        public float[] Position;
-
-        public PlayerData(Player player)
+        public float[] position;
+        
+        public PlayerData Capture(Player player)
         {
-            Speed = player.speed;
+            speed = player.speed;
             xp = player.xp;
-            Position = new float[3];
+            position = new float[3];
             
-            var position = player.transform.position;
-            Position[0] = position.x;
-            Position[1] = position.y;
-            Position[2] = position.z;
+            var p = player.transform.position;
+            position[0] = p.x;
+            position[1] = p.y;
+            position[2] = p.z;
+
+            return this;
         }
         
-        public void Restore(MonoBehaviour mb_object)
+        public void Restore(Player player)
         {
-            var player = mb_object as Player;
-            player.speed = Speed;
+            player.speed = speed;
             player.xp = xp;
-            player.transform.position = new Vector3(Position[0], Position[1], Position[2]);
+            player.transform.position = new Vector3(position[0], position[1], position[2]);
         }
     }
 }

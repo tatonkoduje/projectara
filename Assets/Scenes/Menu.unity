@@ -452,7 +452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: save...
+  m_text: multiplayer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc4778f64db9d474db3ad80e24869c99, type: 2}
   m_sharedMaterial: {fileID: -2458784478485955251, guid: dc4778f64db9d474db3ad80e24869c99, type: 2}
@@ -1468,7 +1468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: load...
+  m_text: continue...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc4778f64db9d474db3ad80e24869c99, type: 2}
   m_sharedMaterial: {fileID: -2458784478485955251, guid: dc4778f64db9d474db3ad80e24869c99, type: 2}
