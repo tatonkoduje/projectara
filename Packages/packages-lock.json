@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.maapiid.save-system": {
+      "version": "file:C:/Users/aru/Projects/unity/unity-package/save-system",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "9.0.1",
       "depth": 1,

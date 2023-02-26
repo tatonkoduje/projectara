@@ -1,3 +1,5 @@
+using com.maapiid.projectara.Core;
+using com.maapiid.projectara.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +21,13 @@ namespace com.maapiid.projectara.UI
     
         public void LoadGame()
         {
-            //load game
+            Messanger.Msg = "continue";
+            SceneManager.LoadScene(whichScene);
+        }
+        
+        public void SaveGame()
+        {
+            GameManager.Instance.SaveGame();
         }
     
         public void OpenOptions()

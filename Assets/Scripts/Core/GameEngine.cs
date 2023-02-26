@@ -1,12 +1,14 @@
+using System;
 using com.maapiid.projectara.Game;
 using UnityEngine;
 using com.maapiid.projectara.Utils;
+using com.maapiid.savesystem;
 
 namespace com.maapiid.projectara.Core
 {
     public class GameEngine : MonoBehaviour
     {
-        [Header ("Inventory")]
+        [Header ("World Settings")]
         public int room2DSize;
         public int dangerRoomsCount;
         
@@ -14,7 +16,7 @@ namespace com.maapiid.projectara.Core
         public GameObject roomPrefab;
         
         private RoomsManager _roomsManager;
-        
+
         private void Awake()
         {
             Debug.Log("Awake GameEngine");
@@ -22,7 +24,6 @@ namespace com.maapiid.projectara.Core
             // create rooms world
             _roomsManager = new RoomsManager();
             _roomsManager.InitializeWorld(room2DSize, dangerRoomsCount);
-           
         }
 
         private void Start()
