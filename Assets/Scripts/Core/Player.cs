@@ -1,4 +1,6 @@
+using System;
 using com.maapiid.projectara.GameData;
+using com.maapiid.projectara.Mechanics;
 using com.maapiid.projectara.Utils;
 using com.maapiid.savesystem;
 using UnityEngine;
@@ -13,6 +15,8 @@ namespace com.maapiid.projectara.Core
 
         private Vector2 _movement;
         private Rigidbody2D _rb2d;
+
+        public InventorySystemSO newInventorySystem;
 
         private void Awake()
         {
@@ -36,5 +40,10 @@ namespace com.maapiid.projectara.Core
         
         public object CaptureState() => new PlayerData().Capture(this);
         public void RestoreState(object state) => ((PlayerData)state).Restore(this);
+
+        private void OnApplicationQuit()
+        {
+            newInventorySystem.Container.Clear();
+        }
     }
 }
